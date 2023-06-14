@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\ArkGifter_API.props" />
+</Project>

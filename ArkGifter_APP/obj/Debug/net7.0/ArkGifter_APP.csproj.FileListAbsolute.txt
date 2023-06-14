@@ -1,0 +1,15 @@
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\bin\Debug\net7.0\ArkGifter_APP.exe
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\bin\Debug\net7.0\ArkGifter_APP.deps.json
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\bin\Debug\net7.0\ArkGifter_APP.runtimeconfig.json
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\bin\Debug\net7.0\ArkGifter_APP.dll
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\bin\Debug\net7.0\ArkGifter_APP.pdb
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.csproj.AssemblyReference.cache
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.AssemblyInfoInputs.cache
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.AssemblyInfo.cs
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.csproj.CoreCompileInputs.cache
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.dll
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\refint\ArkGifter_APP.dll
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.pdb
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ArkGifter_APP.genruntimeconfig.cache
+C:\Users\Xatur\Documents\code\ArkGifter\ArkGifter_APP\obj\Debug\net7.0\ref\ArkGifter_APP.dll
