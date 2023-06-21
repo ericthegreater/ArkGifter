@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace app_03
+namespace ArkGifter_APP
 {
     class Program
     {
