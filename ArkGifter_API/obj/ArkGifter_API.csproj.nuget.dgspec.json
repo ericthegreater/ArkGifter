@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\arkgifter_api\\ArkGifter_API.csproj": {}
+    "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\ArkGifter_API\\ArkGifter_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\arkgifter_api\\ArkGifter_API.csproj": {
+    "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\ArkGifter_API\\ArkGifter_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\arkgifter_api\\ArkGifter_API.csproj",
+        "projectUniqueName": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\ArkGifter_API\\ArkGifter_API.csproj",
         "projectName": "ArkGifter_API",
-        "projectPath": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\arkgifter_api\\ArkGifter_API.csproj",
+        "projectPath": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\ArkGifter_API\\ArkGifter_API.csproj",
         "packagesPath": "C:\\Users\\Xatur\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\arkgifter_api\\obj\\",
+        "outputPath": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\ArkGifter_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Xatur\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "WSTxckm18neoqLRARNDOX38z9dlbYratVH4DI/rk4HN1G+QcpOsqK3zX7oJYL2TCR4NPTCCBOvM/eACM+rH1pQ==",
+  "dgSpecHash": "eP46lqMkLK4Aptx4oGgQL+3iqBm0wDEUqNpH7WC3UL5EhuFNNC/XdKGreS0tB9atqB1iXPCdiJbChq5cbBX1Bg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\arkgifter_api\\ArkGifter_API.csproj",
+  "projectFilePath": "C:\\Users\\Xatur\\Documents\\code\\ArkGifter\\ArkGifter_API\\ArkGifter_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Xatur\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.4\\microsoft.aspnetcore.openapi.7.0.4.nupkg.sha512",
     "C:\\Users\\Xatur\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

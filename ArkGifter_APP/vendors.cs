@@ -7,10 +7,10 @@ namespace ArkGifter_APP
     public class Vendor
     {
         public int vendor_id { get; set; }
-        public string vendor_name { get; set; }
-        public string vendor_city { get; set; }
+        public string? vendor_name { get; set; }
+        public string? vendor_city { get; set; }
         public bool separate_distributor { get; set; }
-        public string distributor { get; set; }
+        public string? distributor { get; set; }
 
         public void DisplayVendorInfo()
         {
