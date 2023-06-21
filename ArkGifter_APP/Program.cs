@@ -15,7 +15,15 @@ namespace ArkGifter_APP
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
-	    }
+                List<Vendor> vendors = Vendor.RetrieveVendors(sqlConnection);
+                foreach (Vendor vendor in vendors)
+                {
+                    vendor.DisplayVendorInfo();
+                }
+
+
+                
+	        }
        }
     }
 }
