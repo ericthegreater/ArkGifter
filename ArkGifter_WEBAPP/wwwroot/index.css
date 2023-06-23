@@ -1,0 +1,20 @@
+body {
+    background-color: lightcyan;
+  }
+  .my-header,
+  .my-footer {
+      background-color: darkgray;
+      text-align: center;
+      color: white;
+  }
+
+  .my-main {
+      background-color: white;
+      padding: 20px;
+  }
+
+  .my-right {
+      background-color: lightgray;
+      text-align: center;
+      padding-top: 20px;
+  }
