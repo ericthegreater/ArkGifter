@@ -6,7 +6,7 @@ function ArkGifter_WEBAPP() {
   const giftBasketsBtn = document.getElementById('giftBasketsBtn');
   const homeBtn = document.getElementById('homeBtn');
   const arkansasProductsBtn = document.getElementById('arkansasProductsBtn');
-  const localVendorsBtn = document.getElementById('localVendorsBtn');
+  const vendorsBtn = document.getElementById('vendorsBtn');
 
   //add event listeners
 
@@ -32,11 +32,12 @@ function ArkGifter_WEBAPP() {
     });
   }
 
-  if (localVendorsBtn) {
-    localVendorsBtn.addEventListener('click', function () {
+  if (vendorsBtn) {
+    vendorsBtn.addEventListener('click', function () {
       window.location.href = 'avendors.html';
     });
   }
+  
 
   // GIFT BASKETS PAGE
   // Fetch gift baskets data from the API and display them on the page
@@ -147,6 +148,8 @@ function displayArkansasProducts() {
 
 // Call the function to fetch and display Arkansas products
 displayArkansasProducts();
+
+//VENDOR CODE was going here but.... i spent 3 or 4 hours and it simply won't serve it even tho i can see the raw data and the JSON in the brwoser. 
 
 
 
