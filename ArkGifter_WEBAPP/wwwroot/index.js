@@ -94,6 +94,64 @@ function ArkGifter_WEBAPP() {
   // Call the function to fetch and display gift baskets
   displayGiftBaskets();
 
+//code for products page
+
+function displayArkansasProducts() {
+  const productTable = document.getElementById('productTable');
+  const tableHead = productTable.querySelector('thead');
+
+  fetch('http://localhost:5226/api/product/arkansas')
+    .then(response => response.json())
+    .then(data => {
+    data.sort((a, b) => a.maker.localeCompare(b.maker));
+      
+      // Clear the table body
+      productTable.querySelector('tbody').innerHTML = '';
+
+      // Iterate over the fetched data and create table rows
+      data.forEach(product => {
+        const row = document.createElement('tr');
+
+        const makerCell = document.createElement('td');
+        makerCell.textContent = product.maker;
+        row.appendChild(makerCell);
+
+        const productCell = document.createElement('td');
+        productCell.textContent = product.product;
+        row.appendChild(productCell);
+
+        const priceCell = document.createElement('td');
+        priceCell.textContent = '$' + product.price.toFixed(2);
+        row.appendChild(priceCell);
+
+        productTable.appendChild(row);
+      });
+
+      // Check if table head exists and add it if not
+      if (!tableHead) {
+        const headerRow = document.createElement('tr');
+        ['Maker', 'Product', 'Price'].forEach(column => {
+          const th = document.createElement('th');
+          th.textContent = column;
+          headerRow.appendChild(th);
+        });
+        const newTableHead = document.createElement('thead');
+        newTableHead.appendChild(headerRow);
+        productTable.appendChild(newTableHead);
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+
+// Call the function to fetch and display Arkansas products
+displayArkansasProducts();
+
+
+
+
+
 }
 // Call the ArkGifter_WEBAPP function
 ArkGifter_WEBAPP();

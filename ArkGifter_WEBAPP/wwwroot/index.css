@@ -30,6 +30,12 @@
     margin-top: 20px;
   }
 
+  .table-container {
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+  
+
   
   
 /* some of this may be redunant or unseen from the old version. (the my- things especially) */
