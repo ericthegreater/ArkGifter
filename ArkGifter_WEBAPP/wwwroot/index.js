@@ -2,74 +2,98 @@
 /* how to format block comment in JS */
 
 function ArkGifter_WEBAPP() {
-
-  //get elements
+  // Get elements
+  const giftBasketsBtn = document.getElementById('giftBasketsBtn');
+  const homeBtn = document.getElementById('homeBtn');
+  const arkansasProductsBtn = document.getElementById('arkansasProductsBtn');
+  const localVendorsBtn = document.getElementById('localVendorsBtn');
 
   //add event listeners
 
   //Functions
 
-  //gift basket button
-  document.addEventListener('DOMContentLoaded', function () {
-    const giftBasketsBtn = document.getElementById('giftBasketsBtn');
+  // Navigation Buttons
 
+  if (giftBasketsBtn) {
     giftBasketsBtn.addEventListener('click', function () {
-      // Redirect to the giftbaskets.html page
-      window.location.href = 'giftbaskets.html';
+      window.location.href = 'agifts.html';
     });
+  }
 
-    // Call the function to fetch and display gift baskets
-    displayGiftBaskets();
-  });
+  if (homeBtn) {
+    homeBtn.addEventListener('click', function () {
+      window.location.href = 'index.html';
+    });
+  }
 
-//GIFT BASKETS PAGE
-// Fetch gift baskets data from the API and display them on the page
-function displayGiftBaskets() {
-  const giftBasketsContainer = document.getElementById('giftBasketsContainer');
+  if (arkansasProductsBtn) {
+    arkansasProductsBtn.addEventListener('click', function () {
+      window.location.href = 'aproducts.html';
+    });
+  }
 
-  fetch('http://localhost:5226/api/giftbaskets')
-    .then(response => response.json())
-    .then(data => {
-      const table = document.createElement('table');
-      table.classList.add('gift-baskets-table');
+  if (localVendorsBtn) {
+    localVendorsBtn.addEventListener('click', function () {
+      window.location.href = 'avendors.html';
+    });
+  }
 
-      // Create table headers
-      const headers = ['', 'Name', 'Summary', 'Price'];
-      const headerRow = document.createElement('tr');
-      headers.forEach(header => {
-        const th = document.createElement('th');
-        th.textContent = header;
-        headerRow.appendChild(th);
-      });
-      table.appendChild(headerRow);
+  // GIFT BASKETS PAGE
+  // Fetch gift baskets data from the API and display them on the page
 
-      // Populate table rows with gift basket data
-      data.forEach(giftBasket => {
-        const row = document.createElement('tr');
-        Object.values(giftBasket).forEach(value => {
-          const td = document.createElement('td');
-          td.textContent = value;
-          row.appendChild(td);
+  function displayGiftBaskets() {
+    const giftBasketsContainer = document.getElementById('giftBasketsContainer');
+
+    fetch('http://localhost:5226/api/giftbaskets')
+      .then(response => response.json())
+      .then(data => {
+        const table = document.createElement('table');
+        table.classList.add('gift-baskets-table');
+
+        // Create table headers
+        const headers = ['', 'Name', 'Summary', 'Total Cost'];
+        const headerRow = document.createElement('tr');
+        headers.forEach(header => {
+          const th = document.createElement('th');
+          th.textContent = header;
+          headerRow.appendChild(th);
         });
-        table.appendChild(row);
+        table.appendChild(headerRow);
+
+        // Populate table rows with gift basket data
+        data.forEach(giftBasket => {
+          const row = document.createElement('tr');
+          const { basketId, basketName, basketSummary, totalCost } = giftBasket;
+
+          const idCell = document.createElement('td');
+          idCell.textContent = basketId;
+          row.appendChild(idCell);
+
+          const nameCell = document.createElement('td');
+          nameCell.textContent = basketName;
+          row.appendChild(nameCell);
+
+          const summaryCell = document.createElement('td');
+          summaryCell.textContent = basketSummary;
+          row.appendChild(summaryCell);
+
+          const costCell = document.createElement('td');
+          costCell.textContent = '$' + totalCost.toFixed(2); 
+          row.appendChild(costCell);
+
+          table.appendChild(row);
+        });
+
+        giftBasketsContainer.appendChild(table);
+      })
+      .catch(error => {
+        console.error('Error:', error);
       });
+  }
 
-      giftBasketsContainer.appendChild(table);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  // Call the function to fetch and display gift baskets
+  displayGiftBaskets();
+
 }
-
-
-
-// Call the function to fetch and display gift baskets
-displayGiftBaskets();
-
-
-  };
-
-
-
-// DOMContentLoaded event ensures the JavaScript code runs when the page is loaded
+// Call the ArkGifter_WEBAPP function
 ArkGifter_WEBAPP();

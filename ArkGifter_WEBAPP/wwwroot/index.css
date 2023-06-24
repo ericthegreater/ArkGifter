@@ -17,6 +17,20 @@
     margin-right: 10px;
     font-size: 16px;
   }
+
+  table {
+    /* Other table styles */
+  }
+  
+  table td {
+    background-color: white;
+  }
+
+  .navigation {
+    margin-top: 20px;
+  }
+
+  
   
 /* some of this may be redunant or unseen from the old version. (the my- things especially) */
 body {
