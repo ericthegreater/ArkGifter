@@ -1,3 +1,24 @@
+/* how to format block comment in CSS */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .button-container {
+    margin-top: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+/* some of this may be redunant or unseen from the old version. (the my- things especially) */
 body {
     background-color: lightcyan;
   }
@@ -18,3 +39,22 @@ body {
       text-align: center;
       padding-top: 20px;
   }
+
+  /* GIFT BASKETS PAGE */
+  .gift-baskets-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .gift-baskets-table th,
+  .gift-baskets-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .gift-baskets-table th {
+    background-color: #f2f2f2;
+  }
+  

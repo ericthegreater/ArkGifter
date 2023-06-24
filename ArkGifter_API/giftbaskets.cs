@@ -9,7 +9,7 @@ namespace ArkGifter_API
         public int basket_id { get; set; }
         public string? basket_name { get; set; }
         public string? basket_summary { get; set; }
-
+        public decimal price { get; set; }
         public void DisplayBasketInfo()
         {
             Console.WriteLine($"Basket ID: {basket_id}");

@@ -20,12 +20,12 @@ namespace ArkGifter_API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<GiftBaskets>> GetGiftBaskets()
+        public ActionResult<IEnumerable<GiftBasketWithTotalCost>> GetGiftBaskets()
         {
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
-                List<GiftBaskets> giftBaskets = GiftBaskets.RetrieveGiftBaskets(sqlConnection);
+                List<GiftBasketWithTotalCost> giftBaskets = GiftBasketWithTotalCost.RetrieveGiftBasketsWithTotalCost(sqlConnection);
                 return Ok(giftBaskets);
             }
         }
