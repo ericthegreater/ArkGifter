@@ -149,6 +149,31 @@ function displayArkansasProducts() {
 // Call the function to fetch and display Arkansas products
 displayArkansasProducts();
 
+//products page buttons
+// Function to handle the click event for the Create Product button
+function handleCreateProduct() {
+  // Implement your logic for creating a product
+  console.log('Create Product button clicked');
+}
+
+// Function to handle the click event for the Update Product button
+function handleUpdateProduct() {
+  // Implement your logic for updating a product
+  console.log('Update Product button clicked');
+}
+
+// Function to handle the click event for the Delete Product button
+function handleDeleteProduct() {
+  // Implement your logic for deleting a product
+  console.log('Delete Product button clicked');
+}
+
+// Attach event listeners to the buttons
+document.getElementById('createProductBtn').addEventListener('click', handleCreateProduct);
+document.getElementById('updateProductBtn').addEventListener('click', handleUpdateProduct);
+document.getElementById('deleteProductBtn').addEventListener('click', handleDeleteProduct);
+
+
 //VENDOR CODE was going here but.... i spent 3 or 4 hours and it simply won't serve it even tho i can see the raw data and the JSON in the brwoser. 
 
 

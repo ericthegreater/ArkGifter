@@ -35,6 +35,13 @@
     overflow-y: scroll;
   }
   
+  .crud-navigation {
+    margin-top: 20px;
+  }
+  .crud-navigation button {
+    background-color: bisque;
+  }
+  
 
   
   
