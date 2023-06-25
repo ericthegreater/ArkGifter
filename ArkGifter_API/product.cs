@@ -61,5 +61,28 @@ namespace ArkGifter_API
 
             return products;
         }
+
+        public static void DeleteProduct(string connectionString, string productName)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(connectionString))
+            {
+                string deleteQuery = $"DELETE FROM Products WHERE Product_Name = @ProductName";
+
+                SqlCommand sqlCommand = new SqlCommand(deleteQuery, sqlConnection);
+                sqlCommand.Parameters.AddWithValue("@ProductName", productName);
+
+                sqlConnection.Open();
+                int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+                if (rowsAffected > 0)
+                {
+                    Console.WriteLine($"Successfully deleted product: {productName}");
+                }
+                else
+                {
+                    Console.WriteLine($"Product not found: {productName}");
+                }
+            }
+        }
     }
 }

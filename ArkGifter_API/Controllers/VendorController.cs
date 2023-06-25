@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ArkGifter_API.Models;
 
 namespace ArkGifter_API.Controllers
 {
@@ -24,7 +23,7 @@ namespace ArkGifter_API.Controllers
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
             {
                 sqlConnection.Open();
-                List<Vendor> vendors = Vendor.RetrieveVendors(sqlConnection);
+                List<Vendor> vendors = Vendor.GetVendors(sqlConnection);
                 return Ok(vendors);
             }
         }

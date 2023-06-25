@@ -64,5 +64,81 @@ namespace ArkGifter_API.Controllers
                 }
             }
         }
+        [HttpPost]
+        public ActionResult CreateProduct([FromBody] ArkansasProduct product)
+        {
+            if (product == null)
+            {
+                return BadRequest("Invalid product data");
+            }
+
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                string insertQuery = @"
+            INSERT INTO Products (Vendor_ID, Product_Name, Price)
+            SELECT V.Vendor_ID, @Product, @Price
+            FROM Vendors V
+            WHERE V.Vendor_Name = @Maker;
+        ";
+
+                using (SqlCommand sqlCommand = new SqlCommand(insertQuery, sqlConnection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@Maker", product.Maker);
+                    sqlCommand.Parameters.AddWithValue("@Product", product.Product);
+                    sqlCommand.Parameters.AddWithValue("@Price", product.Price);
+
+                    int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return Ok("Product created successfully");
+                    }
+                    else
+                    {
+                        return BadRequest("Failed to create the product");
+                    }
+                }
+            }
+        }
+
+
+
+        [HttpDelete("{productName}")]
+        public ActionResult DeleteProduct(string productName)
+        {
+            if (string.IsNullOrEmpty(productName))
+            {
+                return BadRequest("Invalid product name");
+            }
+
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                string deleteQuery = @"
+            DELETE FROM Products
+            WHERE Product_Name = @ProductName
+        ";
+
+                using (SqlCommand sqlCommand = new SqlCommand(deleteQuery, sqlConnection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@ProductName", productName);
+                    int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return Ok($"Product '{productName}' deleted successfully");
+                    }
+                    else
+                    {
+                        return NotFound($"Product '{productName}' not found");
+                    }
+                }
+            }
+        }
+
+
     }
 }

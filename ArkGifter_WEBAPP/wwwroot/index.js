@@ -152,8 +152,37 @@ displayArkansasProducts();
 //products page buttons
 // Function to handle the click event for the Create Product button
 function handleCreateProduct() {
-  // Implement your logic for creating a product
-  console.log('Create Product button clicked');
+  const maker = prompt('Enter the maker:');
+  const product = prompt('Enter the product:');
+  const price = parseFloat(prompt('Enter the price:'));
+
+  const newProduct = {
+    Maker: maker,
+    Product: product,
+    Price: price,
+  };
+
+  // Send a POST request to the API endpoint to create the product
+  fetch('/api/product', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newProduct),
+  })
+  
+    .then(response => {
+      if (response.ok) {
+        alert('Product created successfully.');
+        // Perform any additional actions or refresh the product list
+      } else {
+        alert('Failed to create product.');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while creating the product.');
+    });
 }
 
 // Function to handle the click event for the Update Product button
@@ -164,9 +193,37 @@ function handleUpdateProduct() {
 
 // Function to handle the click event for the Delete Product button
 function handleDeleteProduct() {
-  // Implement your logic for deleting a product
-  console.log('Delete Product button clicked');
+  const productName = document.getElementById('productNameInput').value;
+
+  if (!productName) {
+    alert('Please enter a product name.'); // Show an error message if the input field is empty
+    return;
+  }
+
+  const confirmed = window.confirm(`Are you sure you want to delete the product ${productName}?`);
+  if (!confirmed) {
+    return; // Cancel the deletion if not confirmed
+  }
+
+  // Make an API request to delete the product
+  fetch(`/api/products/${productName}`, {
+    method: 'DELETE'
+  })
+    .then(response => {
+      if (response.ok) {
+        console.log(`Product ${productName} deleted successfully`);
+        alert(`Product ${productName} deleted successfully`); // Show success message
+      } else {
+        console.log(`Failed to delete product ${productName}`);
+        alert(`Failed to delete product ${productName}`); // Show error message
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred while deleting the product.');
+    });
 }
+
 
 // Attach event listeners to the buttons
 document.getElementById('createProductBtn').addEventListener('click', handleCreateProduct);
@@ -175,10 +232,37 @@ document.getElementById('deleteProductBtn').addEventListener('click', handleDele
 
 
 //VENDOR CODE was going here but.... i spent 3 or 4 hours and it simply won't serve it even tho i can see the raw data and the JSON in the brwoser. 
+// Get the vendorsContainer div element
+const vendorsContainer = document.getElementById('vendorsContainer');
 
+// Function to fetch vendors and populate the list
+const fetchVendors = () => {
+    fetch('/api/vendor')
+        .then(response => response.json())
+        .then(vendors => {
+            // Create an unordered list element
+            const ul = document.createElement('ul');
 
+            // Loop through the vendors and create list items for each vendor
+            vendors.forEach(vendor => {
+                const li = document.createElement('li');
+                li.textContent = vendor.vendor_name;
+                ul.appendChild(li);
+            });
 
+            // Clear the vendorsContainer before appending the new list
+            vendorsContainer.innerHTML = '';
 
+            // Append the unordered list to the vendorsContainer div
+            vendorsContainer.appendChild(ul);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+};
+
+// Call fetchVendors to populate the list on page load
+fetchVendors();
 
 }
 // Call the ArkGifter_WEBAPP function

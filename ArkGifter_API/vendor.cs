@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
-namespace ArkGifter_API.Models
+namespace ArkGifter_API
 {
     public class Vendor
     {
@@ -21,34 +21,27 @@ namespace ArkGifter_API.Models
             Console.WriteLine($"Distributor: {distributor}");
             Console.WriteLine();
         }
-
-        public static List<Vendor> RetrieveVendors(SqlConnection sqlConnection)
+        public static List<Vendor> GetVendors(SqlConnection sqlConnection)
         {
             List<Vendor> vendors = new List<Vendor>();
 
-            // SQL query to retrieve vendors
-            string query = "SELECT * FROM Vendors";
+            string query = "SELECT Vendor_ID, Vendor_Name, Vendor_City, Separate_Distributor, Distributor FROM Ark_Gifter.dbo.Vendors";
 
-            using (SqlCommand sqlCommand = new SqlCommand(query, sqlConnection))
+            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+            sqlCommand.CommandType = System.Data.CommandType.Text;
+
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            while (reader.Read())
             {
-                using (SqlDataReader reader = sqlCommand.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        // Create a new Vendor object and populate its properties from the database
-                        Vendor vendor = new Vendor
-                        {
-                            vendor_id = Convert.ToInt32(reader["vendor_id"]),
-                            vendor_name = reader["vendor_name"] != DBNull.Value ? reader["vendor_name"].ToString() : null,
-                            vendor_city = reader["vendor_city"] != DBNull.Value ? reader["vendor_city"].ToString() : null,
-                            separate_distributor = Convert.ToBoolean(reader["separate_distributor"]),
-                            distributor = reader["distributor"] != DBNull.Value ? reader["distributor"].ToString() : null
-                        };
+                Vendor vendor = new Vendor();
 
-                        // Add the Vendor object to the list
-                        vendors.Add(vendor);
-                    }
-                }
+                vendor.vendor_id = Convert.ToInt32(reader["Vendor_ID"]);
+                vendor.vendor_name = reader["Vendor_Name"] != DBNull.Value ? reader["Vendor_Name"].ToString() : null;
+                vendor.vendor_city = reader["Vendor_City"] != DBNull.Value ? reader["Vendor_City"].ToString() : null;
+                vendor.separate_distributor = Convert.ToBoolean(reader["Separate_Distributor"]);
+                vendor.distributor = reader["Distributor"] != DBNull.Value ? reader["Distributor"].ToString() : null;
+
+                vendors.Add(vendor);
             }
 
             return vendors;
