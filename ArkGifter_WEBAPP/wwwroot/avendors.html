@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Local Vendors</title>
   <link rel="stylesheet" type="text/css" href="index.css">
 </head>
+
 <body>
   <div class="container">
     <h1>Local Vendors</h1>
-    <div id="vendorsContainer"></div>
+    <table id="vendorsTable">
+      <thead>
+        <tr>
+          <th>Vendor Name</th>
+          <th>Vendor City</th>
+          <th>Separate Distributor</th>
+          <th>Distributor</th>
+        </tr>
+      </thead>
+      <tbody id="vendorsTableBody"></tbody>
+    </table>
+    
     <div class="navigation">
       <button id="giftBasketsBtn">Gift Baskets</button>
       <button id="arkansasProductsBtn">Arkansas Products</button>
@@ -16,4 +29,5 @@
   </div>
   <script src="index.js"></script>
 </body>
+
 </html>
