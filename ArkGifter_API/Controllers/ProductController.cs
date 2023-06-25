@@ -47,17 +47,16 @@ namespace ArkGifter_API.Controllers
                     using (SqlDataReader reader = sqlCommand.ExecuteReader())
                     {
                         List<ArkansasProduct> arkansasProducts = new List<ArkansasProduct>();
-
                         while (reader.Read())
                         {
-                            ArkansasProduct product = new ArkansasProduct
+                            ArkansasProduct arkansasProduct = new ArkansasProduct(_connectionString)
                             {
                                 Maker = reader.GetString(reader.GetOrdinal("Maker")),
                                 Product = reader.GetString(reader.GetOrdinal("Product")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
                             };
 
-                            arkansasProducts.Add(product);
+                            arkansasProducts.Add(arkansasProduct);
                         }
 
                         return Ok(arkansasProducts);
