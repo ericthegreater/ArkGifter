@@ -12,6 +12,7 @@ namespace ArkGifter_API
             _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
+        public int Product_ID { get; set; }
         public string? Maker { get; set; }
         public string? Product { get; set; }
         public decimal Price { get; set; }
@@ -37,12 +38,13 @@ namespace ArkGifter_API
                 }
 
                 string insertQuery = @"
-                    INSERT INTO Products (Vendor_ID, Product_Name, Price)
-                    VALUES ((SELECT Vendor_ID FROM Vendors WHERE Vendor_Name = @Maker), @Product, @Price)
+                    INSERT INTO Products (Product_ID, Vendor_ID, Product_Name, Price)
+                    VALUES ((SELECT Product_ID, Vendor_ID FROM Vendors WHERE Vendor_Name = @Maker), @Product, @Price)
                 ";
 
                 using (SqlCommand sqlCommand = new SqlCommand(insertQuery, sqlConnection))
                 {
+                    sqlCommand.Parameters.AddWithValue("@Product_ID", Product_ID);
                     sqlCommand.Parameters.AddWithValue("@Maker", Maker);
                     sqlCommand.Parameters.AddWithValue("@Product", Product);
                     sqlCommand.Parameters.AddWithValue("@Price", Price);
@@ -75,8 +77,9 @@ namespace ArkGifter_API
                 string updateQuery = @"
                     UPDATE Products
                     SET Vendor_ID = @VendorId, Product_Name = @Product, Price = @Price
-                    WHERE -- Specify the condition for updating a specific record
+                    WHERE Product_ID = @Product_ID
                 ";
+
 
                 using (SqlCommand sqlCommand = new SqlCommand(updateQuery, sqlConnection))
                 {

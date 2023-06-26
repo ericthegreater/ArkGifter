@@ -37,7 +37,7 @@ namespace ArkGifter_API.Controllers
                 sqlConnection.Open();
 
                 string query = @"
-                    SELECT v.vendor_name AS Maker, p.product_name AS Product, p.price AS Price
+                    SELECT p.Product_ID as Product_ID, v.vendor_name AS Maker, p.product_name AS Product, p.price AS Price
                     FROM Products p
                     JOIN Vendors v ON p.vendor_id = v.vendor_id
                 ";
@@ -51,6 +51,7 @@ namespace ArkGifter_API.Controllers
                         {
                             ArkansasProduct arkansasProduct = new ArkansasProduct(_connectionString)
                             {
+                                Product_ID =reader.GetInt32(reader.GetOrdinal("Product_ID")),
                                 Maker = reader.GetString(reader.GetOrdinal("Maker")),
                                 Product = reader.GetString(reader.GetOrdinal("Product")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))

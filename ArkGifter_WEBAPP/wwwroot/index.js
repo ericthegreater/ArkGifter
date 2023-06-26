@@ -103,38 +103,42 @@ function ArkGifter_WEBAPP() {
   function displayArkansasProducts() {
     const productTable = document.getElementById('productTable');
     const tableHead = productTable.querySelector('thead');
-
+  
     fetch('http://localhost:5226/api/product/arkansas')
       .then(response => response.json())
       .then(data => {
         data.sort((a, b) => a.maker.localeCompare(b.maker));
-
+  
         // Clear the table body
         productTable.querySelector('tbody').innerHTML = '';
-
+  
         // Iterate over the fetched data and create table rows
         data.forEach(product => {
           const row = document.createElement('tr');
-
+  
+          const productIDCell = document.createElement('td');
+          productIDCell.textContent = product.product_ID;
+          row.appendChild(productIDCell);
+  
           const makerCell = document.createElement('td');
           makerCell.textContent = product.maker;
           row.appendChild(makerCell);
-
+  
           const productCell = document.createElement('td');
           productCell.textContent = product.product;
           row.appendChild(productCell);
-
+  
           const priceCell = document.createElement('td');
           priceCell.textContent = '$' + product.price.toFixed(2);
           row.appendChild(priceCell);
-
-          productTable.appendChild(row);
+  
+          productTable.querySelector('tbody').appendChild(row);
         });
-
+  
         // Check if table head exists and add it if not
         if (!tableHead) {
           const headerRow = document.createElement('tr');
-          ['Maker', 'Product', 'Price'].forEach(column => {
+          ['Product_ID', 'Maker', 'Product', 'Price'].forEach(column => {
             const th = document.createElement('th');
             th.textContent = column;
             headerRow.appendChild(th);
@@ -148,9 +152,10 @@ function ArkGifter_WEBAPP() {
         console.error('Error:', error);
       });
   }
-
+  
   // Call the function to fetch and display Arkansas products
   displayArkansasProducts();
+  
 
   //products page buttons
   // Function to handle the click event for the Create Product button
@@ -158,22 +163,7 @@ function ArkGifter_WEBAPP() {
     const maker = prompt('Enter the maker:');
     const product = prompt('Enter the product:');
     const price = parseFloat(prompt('Enter the price:'));
-
-    //old way
-    // const newProduct = {
-    //   Maker: maker,
-    //   Product: product,
-    //   Price: price,
-    // };
-var url="http://localhost:5226/api/product/create?product=" + product + "&maker=" + maker + "&price=" + price;
-    // Send a POST request to the API endpoint to create the product
-    // fetch('http://localhost:5226/api/product', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(newProduct),
-    // })
+const url="http://localhost:5226/api/product/create?product=" + product + "&maker=" + maker + "&price=" + price;
 fetch(url, {method:'GET'})
       .then(response => {
         if (response.ok) {
