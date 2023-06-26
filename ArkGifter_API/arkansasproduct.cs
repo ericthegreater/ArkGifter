@@ -12,7 +12,7 @@ namespace ArkGifter_API
             _connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
-        public int Product_ID { get; set; }
+        public int ProductID { get; set; }
         public string? Maker { get; set; }
         public string? Product { get; set; }
         public decimal Price { get; set; }
@@ -44,7 +44,7 @@ namespace ArkGifter_API
 
                 using (SqlCommand sqlCommand = new SqlCommand(insertQuery, sqlConnection))
                 {
-                    sqlCommand.Parameters.AddWithValue("@Product_ID", Product_ID);
+                    sqlCommand.Parameters.AddWithValue("@Product_ID", ProductID);
                     sqlCommand.Parameters.AddWithValue("@Maker", Maker);
                     sqlCommand.Parameters.AddWithValue("@Product", Product);
                     sqlCommand.Parameters.AddWithValue("@Price", Price);
@@ -77,7 +77,7 @@ namespace ArkGifter_API
                 string updateQuery = @"
                     UPDATE Products
                     SET Vendor_ID = @VendorId, Product_Name = @Product, Price = @Price
-                    WHERE Product_ID = @Product_ID
+                    WHERE Product_ID = @ProductID
                 ";
 
 

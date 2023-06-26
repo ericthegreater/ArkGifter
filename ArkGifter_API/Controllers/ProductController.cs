@@ -37,7 +37,7 @@ namespace ArkGifter_API.Controllers
                 sqlConnection.Open();
 
                 string query = @"
-                    SELECT p.Product_ID as Product_ID, v.vendor_name AS Maker, p.product_name AS Product, p.price AS Price
+                    SELECT p.Product_ID as ProductID, v.vendor_name AS Maker, p.product_name AS Product, p.price AS Price
                     FROM Products p
                     JOIN Vendors v ON p.vendor_id = v.vendor_id
                 ";
@@ -51,7 +51,7 @@ namespace ArkGifter_API.Controllers
                         {
                             ArkansasProduct arkansasProduct = new ArkansasProduct(_connectionString)
                             {
-                                Product_ID =reader.GetInt32(reader.GetOrdinal("Product_ID")),
+                                ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
                                 Maker = reader.GetString(reader.GetOrdinal("Maker")),
                                 Product = reader.GetString(reader.GetOrdinal("Product")),
                                 Price = reader.GetDecimal(reader.GetOrdinal("Price"))
@@ -106,12 +106,12 @@ namespace ArkGifter_API.Controllers
 
 
 
-        [HttpDelete("{productName}")]
-        public ActionResult DeleteProduct(string productName)
+        [HttpDelete("{productID}")]
+        public ActionResult DeleteProduct(string productID)
         {
-            if (string.IsNullOrEmpty(productName))
+            if (string.IsNullOrEmpty(productID))
             {
-                return BadRequest("Invalid product name");
+                return BadRequest("Invalid product ID");
             }
 
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
@@ -120,25 +120,27 @@ namespace ArkGifter_API.Controllers
 
                 string deleteQuery = @"
             DELETE FROM Products
-            WHERE Product_Name = @ProductName
+            WHERE Product_ID = @ProductID
         ";
 
                 using (SqlCommand sqlCommand = new SqlCommand(deleteQuery, sqlConnection))
                 {
-                    sqlCommand.Parameters.AddWithValue("@ProductName", productName);
+                    sqlCommand.Parameters.AddWithValue("@ProductID", productID);
+
                     int rowsAffected = sqlCommand.ExecuteNonQuery();
 
                     if (rowsAffected > 0)
                     {
-                        return Ok($"Product '{productName}' deleted successfully");
+                        return Ok($"Product '{productID}' deleted successfully");
                     }
                     else
                     {
-                        return NotFound($"Product '{productName}' not found");
+                        return NotFound($"Product '{productID}' not found");
                     }
                 }
             }
         }
+
 
 
     }
