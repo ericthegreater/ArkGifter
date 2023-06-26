@@ -159,21 +159,22 @@ function ArkGifter_WEBAPP() {
     const product = prompt('Enter the product:');
     const price = parseFloat(prompt('Enter the price:'));
 
-    const newProduct = {
-      Maker: maker,
-      Product: product,
-      Price: price,
-    };
-
+    //old way
+    // const newProduct = {
+    //   Maker: maker,
+    //   Product: product,
+    //   Price: price,
+    // };
+var url="http://localhost:5226/api/product/create?product=" + product + "&maker=" + maker + "&price=" + price;
     // Send a POST request to the API endpoint to create the product
-    fetch('http://localhost:5226/api/product', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newProduct),
-    })
-
+    // fetch('http://localhost:5226/api/product', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(newProduct),
+    // })
+fetch(url, {method:'GET'})
       .then(response => {
         if (response.ok) {
           alert('Product created successfully.');

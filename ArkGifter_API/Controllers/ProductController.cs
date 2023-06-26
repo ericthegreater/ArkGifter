@@ -64,8 +64,8 @@ namespace ArkGifter_API.Controllers
                 }
             }
         }
-        [HttpPost]
-        public ActionResult CreateProduct([FromBody] ArkansasProduct product)
+        [HttpGet("create")]
+        public ActionResult CreateProduct(string product, string maker, decimal price)
         {
             if (product == null)
             {
@@ -85,9 +85,9 @@ namespace ArkGifter_API.Controllers
 
                 using (SqlCommand sqlCommand = new SqlCommand(insertQuery, sqlConnection))
                 {
-                    sqlCommand.Parameters.AddWithValue("@Maker", product.Maker);
-                    sqlCommand.Parameters.AddWithValue("@Product", product.Product);
-                    sqlCommand.Parameters.AddWithValue("@Price", product.Price);
+                    sqlCommand.Parameters.AddWithValue("@Maker", maker);
+                    sqlCommand.Parameters.AddWithValue("@Product", product);
+                    sqlCommand.Parameters.AddWithValue("@Price", price);
 
                     int rowsAffected = sqlCommand.ExecuteNonQuery();
 
