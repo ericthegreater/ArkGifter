@@ -53,45 +53,57 @@ namespace ArkGifter_API
                 }
             }
         }
+//uhhh i guess this is in the controller now
+// public void Update()
+// {
+//     using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
+//     {
+//         sqlConnection.Open();
 
-        public void Update()
-        {
-            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
-            {
-                sqlConnection.Open();
+//         // Retrieve the vendor_id based on the vendor name
+//         int vendorId;
+//         string vendorIdQuery = "SELECT Vendor_ID FROM Vendors WHERE Vendor_Name = @VendorName";
+//         using (SqlCommand vendorIdCommand = new SqlCommand(vendorIdQuery, sqlConnection))
+//         {
+//             vendorIdCommand.Parameters.AddWithValue("@VendorName", Maker);
+//             object vendorIdResult = vendorIdCommand.ExecuteScalar();
+//             if (vendorIdResult == null || vendorIdResult == DBNull.Value)
+//             {
+//                 throw new InvalidOperationException("Invalid vendor name");
+//             }
+//             vendorId = Convert.ToInt32(vendorIdResult);
+//         }
 
-                // Retrieve the vendor_id based on the vendor name
-                int vendorId;
-                string vendorIdQuery = "SELECT Vendor_ID FROM Vendors WHERE Vendor_Name = @VendorName";
-                using (SqlCommand vendorIdCommand = new SqlCommand(vendorIdQuery, sqlConnection))
-                {
-                    vendorIdCommand.Parameters.AddWithValue("@VendorName", Maker);
-                    object vendorIdResult = vendorIdCommand.ExecuteScalar();
-                    if (vendorIdResult == null || vendorIdResult == DBNull.Value)
-                    {
-                        throw new InvalidOperationException("Invalid vendor name");
-                    }
-                    vendorId = Convert.ToInt32(vendorIdResult);
-                }
+//         string updateQuery = @"
+//             UPDATE Products
+//             SET Vendor_ID = @VendorId, Product_Name = @Product, Price = @Price
+//             WHERE Product_ID = @ProductID
+//         ";
 
-                string updateQuery = @"
-                    UPDATE Products
-                    SET Vendor_ID = @VendorId, Product_Name = @Product, Price = @Price
-                    WHERE Product_ID = @ProductID
-                ";
+//         using (SqlCommand sqlCommand = new SqlCommand(updateQuery, sqlConnection))
+//         {
+//             sqlCommand.Parameters.AddWithValue("@VendorId", vendorId);
+//             sqlCommand.Parameters.AddWithValue("@Product", Product);
+//             sqlCommand.Parameters.AddWithValue("@Price", Price);
+//             sqlCommand.Parameters.AddWithValue("@ProductID", ProductID);
+
+//             int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+//             if (rowsAffected > 0)
+//             {
+//                 Console.WriteLine("Product updated successfully");
+//             }
+//             else
+//             {
+//                 Console.WriteLine("Product update failed");
+//             }
+//         }
+//     }
+// }
 
 
-                using (SqlCommand sqlCommand = new SqlCommand(updateQuery, sqlConnection))
-                {
-                    sqlCommand.Parameters.AddWithValue("@VendorId", vendorId);
-                    sqlCommand.Parameters.AddWithValue("@Product", Product);
-                    sqlCommand.Parameters.AddWithValue("@Price", Price);
 
-                    sqlCommand.ExecuteNonQuery();
-                }
-            }
-        }
-
+//i don't think i ended up using this delete method
         public void Delete()
         {
             using (SqlConnection sqlConnection = new SqlConnection(_connectionString))

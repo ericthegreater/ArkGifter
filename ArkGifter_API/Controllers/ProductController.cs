@@ -143,5 +143,45 @@ namespace ArkGifter_API.Controllers
 
 
 
+        [HttpGet("update")]
+        public ActionResult UpdateProduct(int productId, string product, string maker, decimal price)
+        {
+            if (product == null)
+            {
+                return BadRequest("Invalid product data");
+            }
+
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                string updateQuery = @"
+            UPDATE Products
+            SET Product_Name = @Product,
+                Vendor_ID = (SELECT V.Vendor_ID FROM Vendors V WHERE V.Vendor_Name = @Maker),
+                Price = @Price
+            WHERE Product_ID = @ProductId;
+        ";
+
+                using (SqlCommand sqlCommand = new SqlCommand(updateQuery, sqlConnection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@ProductId", productId);
+                    sqlCommand.Parameters.AddWithValue("@Product", product);
+                    sqlCommand.Parameters.AddWithValue("@Maker", maker);
+                    sqlCommand.Parameters.AddWithValue("@Price", price);
+
+                    int rowsAffected = sqlCommand.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        return Ok("Product updated successfully");
+                    }
+                    else
+                    {
+                        return NotFound("Product not found");
+                    }
+                }
+            }
+        }
     }
 }
