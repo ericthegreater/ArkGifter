@@ -89,7 +89,7 @@ function ArkGifter_WEBAPP() {
   }
 
   // Call the function to fetch and display gift baskets
- // displayGiftBaskets();
+ displayGiftBaskets();
 
   // Code for products page
 
@@ -147,7 +147,7 @@ function ArkGifter_WEBAPP() {
   }
 
   // Call the function to fetch and display Arkansas products
-  //displayArkansasProducts();
+  displayArkansasProducts();
 
   // Products page buttons
 
