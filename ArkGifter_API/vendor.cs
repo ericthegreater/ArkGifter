@@ -25,7 +25,7 @@ namespace ArkGifter_API
         {
             List<Vendor> vendors = new List<Vendor>();
 
-            string query = "SELECT Vendor_ID, Vendor_Name, Vendor_City, Separate_Distributor, Distributor FROM Ark_Gifter.dbo.Vendors";
+            string query = "SELECT Vendor_ID, Vendor_Name, Vendor_City, Separate_Distributor, Distributor FROM Vendors";
 
             SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
             sqlCommand.CommandType = System.Data.CommandType.Text;
@@ -33,16 +33,18 @@ namespace ArkGifter_API
             SqlDataReader reader = sqlCommand.ExecuteReader();
             while (reader.Read())
             {
-                Vendor vendor = new Vendor();
-
-                vendor.vendor_id = Convert.ToInt32(reader["Vendor_ID"]);
-                vendor.vendor_name = reader["Vendor_Name"] != DBNull.Value ? reader["Vendor_Name"].ToString() : null;
-                vendor.vendor_city = reader["Vendor_City"] != DBNull.Value ? reader["Vendor_City"].ToString() : null;
-                vendor.separate_distributor = Convert.ToBoolean(reader["Separate_Distributor"]);
-                vendor.distributor = reader["Distributor"] != DBNull.Value ? reader["Distributor"].ToString() : null;
+                Vendor vendor = new Vendor
+                {
+                    vendor_id = Convert.ToInt32(reader["Vendor_ID"]),
+                    vendor_name = reader["Vendor_Name"] as string,
+                    vendor_city = reader["Vendor_City"] as string,
+                    separate_distributor = Convert.ToBoolean(reader["Separate_Distributor"]),
+                    distributor = reader["Distributor"] as string
+                };
 
                 vendors.Add(vendor);
             }
+
 
             return vendors;
         }
