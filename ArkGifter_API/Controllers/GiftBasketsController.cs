@@ -1,8 +1,6 @@
-// GiftBasketsController.cs
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using ArkGifter_API; // Add this using directive
 
 namespace ArkGifter_API.Controllers
 {
@@ -29,5 +27,26 @@ namespace ArkGifter_API.Controllers
                 return Ok(giftBaskets);
             }
         }
+
+        [HttpPost]
+        public ActionResult CreateGiftBasket([FromBody] GiftBaskets giftBasket)
+        {
+            using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
+            {
+                sqlConnection.Open();
+
+                string sql = $"INSERT INTO [GiftBaskets] (basket_name, basket_summary) " +
+                             $"VALUES ('{giftBasket.basket_name}', '{giftBasket.basket_summary}')";
+
+                // Execute the SQL statement
+                using (SqlCommand sqlCommand = new SqlCommand(sql, sqlConnection))
+                {
+                    sqlCommand.ExecuteNonQuery();
+                }
+
+                return Ok();
+            }
+        }
+
     }
 }

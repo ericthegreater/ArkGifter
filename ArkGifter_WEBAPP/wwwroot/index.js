@@ -196,15 +196,16 @@ function ArkGifter_WEBAPP() {
       });
   }
   // Add event listener for the Update Product button
-  //var updateProductBtn = document.getElementById('updateProductBtn');
-  //updateProductBtn.addEventListener('click', handleUpdateProduct);
+  var updateProductBtn = document.getElementById('updateProductBtn');
+  updateProductBtn.addEventListener('click', handleUpdateProduct);
 
 
 
 
   //I WISH YOU COULD. ... DELETE IT
   function handleDeleteProduct() {
-    const productID = document.getElementById('productIDInput').value;
+    const productID = prompt('Please enter the product ID:');
+
 
     if (!productID) {
       alert('Please enter a product ID.'); // Show an error message if the input field is empty
@@ -235,7 +236,6 @@ function ArkGifter_WEBAPP() {
         alert('An error occurred while deleting the product.');
       });
   }
-
 
 
   // Attach event listeners to the buttons

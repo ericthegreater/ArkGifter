@@ -18,6 +18,7 @@ namespace ArkGifter_API.Controllers
             _connectionString = $"data source={serverName}; database={databaseName}; Integrated Security=true;";
         }
 
+        //this was the getter for all the products, i switched to the simpler version of the form so this block can probably be elided
         [HttpGet]
         public ActionResult<IEnumerable<Product>> GetProducts()
         {
@@ -28,7 +29,7 @@ namespace ArkGifter_API.Controllers
                 return Ok(products);
             }
         }
-
+        //this gets the products
         [HttpGet("arkansas")]
         public ActionResult<IEnumerable<ArkansasProduct>> GetArkansasProducts()
         {
@@ -65,6 +66,11 @@ namespace ArkGifter_API.Controllers
                 }
             }
         }
+
+
+        //new get for the delete form
+
+
         [HttpGet("create")]
         public ActionResult CreateProduct(string product, string maker, decimal price)
         {
